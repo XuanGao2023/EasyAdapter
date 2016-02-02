@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         itemBaseArrayList.add(new ItemTest("ItemTest"));
         itemBaseArrayList.add(new ItemTest1("ItemTest1Left", "ItemTest1Right"));
+        adapterBase.notifyDataSetChanged();
     }
 
 }
