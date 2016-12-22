@@ -1,4 +1,4 @@
-package com.pan.easyadapter.easyadapter;
+package com.pan.easyadapter;
 
 /**
  * Created by Pan on 1/23/16.

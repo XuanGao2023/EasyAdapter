@@ -1,10 +1,9 @@
-package com.pan.easyadapter.easyadapter;
+package com.pan.easyadapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.pan.easyadapter.R;
 
 /**
  * Created by Pan on 1/23/16.
@@ -12,6 +11,7 @@ import com.pan.easyadapter.R;
 public class ViewHolderBase extends RecyclerView.ViewHolder {
 
     protected Context mContext;
+
     public ViewHolderBase(Context context, View viewItem) {
         super(viewItem);
         mContext = context;
@@ -21,7 +21,7 @@ public class ViewHolderBase extends RecyclerView.ViewHolder {
      * This method should be overrided by subclass
      */
     public static int getLayout() {
-        return R.layout.viewholder_base;
+        return R.layout.easyadatper_viewholder_base;
     }
 
     /**

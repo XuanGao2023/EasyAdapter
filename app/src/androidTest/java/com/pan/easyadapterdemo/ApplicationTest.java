@@ -1,4 +1,4 @@
-package com.pan.easyadapter;
+package com.pan.easyadapterdemo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

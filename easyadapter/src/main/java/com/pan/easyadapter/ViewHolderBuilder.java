@@ -1,4 +1,4 @@
-package com.pan.easyadapter.easyadapter;
+package com.pan.easyadapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -19,7 +19,7 @@ public class ViewHolderBuilder {
 
     private static ViewHolderBuilder defaultViewHolderBuilder = new ViewHolderBuilder();
 
-    private Map<Class<? extends ItemBase> , Class<? extends ViewHolderBase>> mapViewHolder =
+    private Map<Class<? extends ItemBase>, Class<? extends ViewHolderBase>> mapViewHolder =
             new HashMap<>();
 
     public static ViewHolderBuilder getDefaultViewHolderBuilder() {
@@ -27,7 +27,7 @@ public class ViewHolderBuilder {
     }
 
     public void putItemViewHolderRelation(Class<? extends ItemBase> clsitem, Class<? extends ViewHolderBase> clsviewholder) {
-        if(mapViewHolder.get(clsitem) != null) {
+        if (mapViewHolder.get(clsitem) != null) {
             throw new IllegalArgumentException(clsitem.getSimpleName() + " has been added!!!");
         } else {
             mapViewHolder.put(clsitem, clsviewholder);
@@ -35,9 +35,9 @@ public class ViewHolderBuilder {
     }
 
     public ViewHolderBase createViewHolder(Context context, ViewGroup parent, Integer viewType) {
-        for (Map.Entry<Class<? extends ItemBase> , Class<? extends ViewHolderBase>> entry
+        for (Map.Entry<Class<? extends ItemBase>, Class<? extends ViewHolderBase>> entry
                 : mapViewHolder.entrySet()) {
-            if(entry.getValue().hashCode() == viewType) {
+            if (entry.getValue().hashCode() == viewType) {
                 try {
                     try {
                         Class[] clsarg = new Class[]{Context.class, View.class};
@@ -72,7 +72,7 @@ public class ViewHolderBuilder {
     @Nullable
     public Integer getViewType(ItemBase item) {
         Class<? extends ViewHolderBase> cls = mapViewHolder.get(item.getClass());
-        if(cls == null) {
+        if (cls == null) {
             throw new IllegalArgumentException("Can't find the ViewHolderBase relates to "
                     + item.getClass().getSimpleName());
         }

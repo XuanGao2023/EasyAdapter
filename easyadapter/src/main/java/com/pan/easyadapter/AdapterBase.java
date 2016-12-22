@@ -1,4 +1,4 @@
-package com.pan.easyadapter.easyadapter;
+package com.pan.easyadapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +18,7 @@ public class AdapterBase extends RecyclerView.Adapter<ViewHolderBase> {
     public AdapterBase(Context context, ArrayList<ItemBase> list) {
         this(context, list, ViewHolderBuilder.getDefaultViewHolderBuilder());
     }
+
     public AdapterBase(Context context, ArrayList<ItemBase> list, ViewHolderBuilder builder) {
         mContext = context;
         listItemBase = list;
@@ -44,6 +45,8 @@ public class AdapterBase extends RecyclerView.Adapter<ViewHolderBase> {
 
     @Override
     public void onBindViewHolder(ViewHolderBase holder, int position) {
-        if(holder != null) { holder.bindViewHolder(listItemBase.get(position)); }
+        if (holder != null) {
+            holder.bindViewHolder(listItemBase.get(position));
+        }
     }
 }
