@@ -11,7 +11,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -29,4 +28,102 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     testCompile 'junit:junit:4.12'
+}
+
+//The script snippets below is for publishing on bintray and maven.
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+group = LIB_GROUP
+version = LIB_VERSION_NAME
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def siteUrl = LIB_SITEURL
+def gitUrl = LIB_GITURL
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_KEY
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = LIB_REPO
+        name = LIB_NAME
+        userOrg = LIB_USERORG
+        desc = LIB_DESC
+        websiteUrl = LIB_SITEURL
+        issueTrackerUrl = LIB_ISSUETRACKERURL
+        vcsUrl = gitUrl
+        licenses = ['GPL-3.0']
+        labels = ['aar', 'android']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging LIB_PACK
+                name LIB_NAME
+                url siteUrl
+                licenses {
+                    license {
+                        name POM_LIC_NAME
+                        url POM_LIC_URL
+                    }
+                }
+                developers {
+                    developer {
+                        id DEV_ID
+                        name DEV_NAME
+                        email DEV_EMAIL
+                    }
+                }
+                scm {
+                    connection LIB_GITURL
+                    developerConnection LIB_GITURL
+                    url LIB_SITEURL
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
 }

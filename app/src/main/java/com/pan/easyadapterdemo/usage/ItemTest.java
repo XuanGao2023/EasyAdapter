@@ -1,7 +1,7 @@
-package com.pan.easyadapter.easyadapter.usage;
+package com.pan.easyadapterdemo.usage;
 
 
-import com.pan.easyadapter.easyadapter.ItemBase;
+import com.pan.easyadapter.ItemBase;
 
 /**
  * Created by Pan on 1/23/16.

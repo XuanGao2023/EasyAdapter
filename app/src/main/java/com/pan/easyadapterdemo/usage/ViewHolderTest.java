@@ -1,12 +1,12 @@
-package com.pan.easyadapter.easyadapter.usage;
+package com.pan.easyadapterdemo.usage;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import com.pan.easyadapter.R;
-import com.pan.easyadapter.easyadapter.ItemBase;
-import com.pan.easyadapter.easyadapter.ViewHolderBase;
+import com.pan.easyadapter.ItemBase;
+import com.pan.easyadapter.ViewHolderBase;
+import com.pan.easyadapterdemo.R;
 
 
 /**
@@ -15,9 +15,10 @@ import com.pan.easyadapter.easyadapter.ViewHolderBase;
 public class ViewHolderTest extends ViewHolderBase {
 
     private TextView textView;
+
     public ViewHolderTest(Context context, View viewItem) {
         super(context, viewItem);
-        textView = (TextView)itemView.findViewById(R.id.textView);
+        textView = (TextView) itemView.findViewById(R.id.textView);
     }
 
     public static int getLayout() {
@@ -25,7 +26,7 @@ public class ViewHolderTest extends ViewHolderBase {
     }
 
     public void bindViewHolder(ItemBase item) {
-        if(item instanceof ItemTest) {
+        if (item instanceof ItemTest) {
             ItemTest itemTest = (ItemTest) item;
             textView.setText(itemTest.text);
         }
