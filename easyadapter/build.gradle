@@ -56,6 +56,10 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = LIB_SITEURL
 def gitUrl = LIB_GITURL
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def BINTRAY_KEY = properties.getProperty('BINTRAY_KEY')
+
 bintray {
     user = BINTRAY_USER
     key = BINTRAY_KEY
